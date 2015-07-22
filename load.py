@@ -1,10 +1,6 @@
-import os
 import redis
 
-app_name = "GIFTOFTHEARTIST"
-redis_collection = 'txt'
-redis_url = os.getenv(app_name + '_REDIS_URL', 'redis://localhost:6379')
-
+from config import redis_collection, redis_url
 
 if __name__ == "__main__":
 
@@ -12,4 +8,4 @@ if __name__ == "__main__":
 
     with open('gifts.txt', 'r') as txt:
         for line in txt:
-            r.sadd('txt', line.strip())
+            r.sadd(redis_collection, line.strip())
